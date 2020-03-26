@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,14 +11,24 @@ namespace MovieRental.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;
+
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = new List<Customer>()
-            {
-                new Customer(){Name ="John Smith" , Id=1},
-                new Customer(){Name = "Mary Williams", Id=2}
-            };
+            var customers = _context.Customers.Include(x => x.MembershipType).ToList();
 
             var viewModel = new RandomMovieViewModel()
             {
@@ -29,17 +40,12 @@ namespace MovieRental.Controllers
 
         public ActionResult Details(int id)
         {
-            if (id == 1)
+            var customers = _context.Customers.Include(x => x.MembershipType).SingleOrDefault(x => x.Id == id);
+            if(customers == null)
             {
-                return Content("John Smith");
+                return HttpNotFound();
             }
-
-            if (id == 2)
-            {
-                return Content("Mary Williams");
-            }
-
-            return Content("Unknown");
+            return View(customers);
         }
     }
 }

@@ -4,31 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieRental.Models;
+using System.Data.Entity;
 using MovieRental.ViewModels;
 
 namespace MovieRental.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = new List<Movie>(){
-                new Movie() { Name = "Shrek" },
-                new Movie() { Name = "Wall-e" }
-            };
-
-            var customers = new List<Customer>()
-            {
-                new Customer(){Name = "Customer1"},
-                new Customer(){Name = "Customer2"}
-            };
+            var movie = _context.Movies.ToList();
 
             var viewModel = new RandomMovieViewModel()
             {
                 Movie = movie,
-                Customers = customers
             };
+
             return View(viewModel);
         }
 
@@ -38,7 +41,16 @@ namespace MovieRental.Controllers
             return Content(year + "/" + month);
         }
 
+        public ActionResult Details(int id)
+        {
+            var movies = _context.Movies.SingleOrDefault(x => x.Id == id);
+            if (movies == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movies);
+        }
 
     }
-
 }
