@@ -41,15 +41,55 @@ namespace MovieRental.Controllers
             return Content(year + "/" + month);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Edit(int id)
         {
-            var movies = _context.Movies.SingleOrDefault(x => x.Id == id);
-            if (movies == null)
+            var movie = _context.Movies.SingleOrDefault(x => x.Id == id);
+            if (movie == null)
             {
                 return HttpNotFound();
             }
 
-            return View(movies);
+            var viewModel = new MovieFormViewModel(movie)
+            {
+              
+            };
+
+            return View(viewModel);
+        }
+
+
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(x => x.Id == movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.NumberInStock = (int)movie.NumberInStock;
+                movieInDb.Genre = movie.Genre;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return RedirectToAction("Random", "Movies");
         }
 
     }

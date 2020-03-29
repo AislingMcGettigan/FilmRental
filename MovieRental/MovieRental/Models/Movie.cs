@@ -12,6 +12,6 @@ namespace MovieRental.Models
         public string Genre { get; set; }
         public int NumberInStock { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
     }
 }
