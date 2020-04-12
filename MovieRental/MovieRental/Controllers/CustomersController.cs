@@ -28,14 +28,7 @@ namespace MovieRental.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(x => x.MembershipType).ToList();
-
-            var viewModel = new RandomMovieViewModel()
-            {
-                Customers = customers
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         public ActionResult Details(int id)

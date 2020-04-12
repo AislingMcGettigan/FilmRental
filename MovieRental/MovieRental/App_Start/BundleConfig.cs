@@ -8,7 +8,11 @@ namespace MovieRental
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                "~/Scripts/bootbox.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/Datatables/jquery.datatables.js",
+                      "~/Scripts/Datatables/datatables.bootstrap.js",
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -19,11 +23,10 @@ namespace MovieRental
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }
     }
