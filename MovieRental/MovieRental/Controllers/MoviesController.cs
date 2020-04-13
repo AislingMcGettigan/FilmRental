@@ -25,14 +25,13 @@ namespace MovieRental.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = _context.Movies.ToList();
 
-            var viewModel = new RandomMovieViewModel()
+            if (User.IsInRole(RoleName.CanManageMovies))
             {
-                Movie = movie,
-            };
-
-            return View(viewModel);
+                return View("Random");
+            }
+            
+            return View("ReadOnlyRandom");
         }
 
         [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1,12)}")]
@@ -57,7 +56,7 @@ namespace MovieRental.Controllers
             return View(viewModel);
         }
 
-
+        [Authorize(Roles =RoleName.CanManageMovies)]
         public ActionResult New()
         {
             return View();

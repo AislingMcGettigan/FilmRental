@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44397</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -254,6 +254,14 @@
     <Compile Include="Migrations\202003290242132_setAddedDateToNullable.Designer.cs">
       <DependentUpon>202003290242132_setAddedDateToNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004130109027_SeedUsers.cs" />
+    <Compile Include="Migrations\202004130109027_SeedUsers.Designer.cs">
+      <DependentUpon>202004130109027_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004130137174_AddDrivingLicense.cs" />
+    <Compile Include="Migrations\202004130137174_AddDrivingLicense.Designer.cs">
+      <DependentUpon>202004130137174_AddDrivingLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -262,6 +270,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
@@ -513,6 +522,7 @@
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
     <Content Include="Views\Movies\New.cshtml" />
+    <Content Include="Views\Movies\ReadOnlyRandom.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -572,6 +582,12 @@
     <EmbeddedResource Include="Migrations\202003290242132_setAddedDateToNullable.resx">
       <DependentUpon>202003290242132_setAddedDateToNullable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004130109027_SeedUsers.resx">
+      <DependentUpon>202004130109027_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004130137174_AddDrivingLicense.resx">
+      <DependentUpon>202004130137174_AddDrivingLicense.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -591,7 +607,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52795</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52795/</IISUrl>
+          <IISUrl>https://localhost:44397/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
