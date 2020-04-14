@@ -151,7 +151,7 @@ namespace MovieRental.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DrivingLicence = model.DrivingLicense };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DrivingLicence = model.DrivingLicense, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -362,7 +362,7 @@ namespace MovieRental.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DrivingLicence = model.DrivingLicense, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
