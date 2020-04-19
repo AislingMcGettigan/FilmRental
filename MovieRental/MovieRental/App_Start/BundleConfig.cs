@@ -11,6 +11,8 @@ namespace MovieRental
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                 "~/Scripts/bootbox.js",
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/toastr.js",
+                      "~/Scripts/typeahead.bundle.js",
                       "~/Scripts/Datatables/jquery.datatables.js",
                       "~/Scripts/Datatables/datatables.bootstrap.js",
                         "~/Scripts/jquery-{version}.js"));
@@ -26,6 +28,8 @@ namespace MovieRental
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/typeahead.css",
+                       "~/Content/toastr.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }
